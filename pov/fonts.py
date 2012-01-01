@@ -20,20 +20,35 @@ def escape(c):
     else:
         return c
 
-print '#define WIDTH %d' % WIDTH
-print '#define HEIGHT %d' % (HEIGHT - 2) # FIXME
-print 'byte %s[128][%d];' % (VARNAME, WIDTH)
-print 'void init_letters() {'
+with open('letters.h', 'w') as letters_h:
+    letters_h.write('''#ifndef letters_h
+#define letters_h
 
-for character in TEXT:
-    image = Image.new('1',(WIDTH, HEIGHT))
-    draw = ImageDraw.Draw(image)
-    draw.text((0, 0), character, font=font, fill=1)
-    pix = image.load()
-    for i,x in enumerate(xrange(WIDTH)):
-        sys.stdout.write("    %s['%s'][%d] = byte(B" % (VARNAME, escape(character), i))
-        for y in xrange(1,HEIGHT-1):
-            sys.stdout.write(str(pix[x,y]))
-        print ');'
-    print
-print '}'
+#include <Arduino.h>
+
+#define WIDTH %d
+#define HEIGHT %d
+
+extern byte %s[128][WIDTH];
+
+void init_letters();
+
+#endif''' % (WIDTH, HEIGHT - 2, VARNAME))
+
+with open('letters.cpp', 'w') as letters_cpp:
+    letters_cpp.write('#include "letters.h"\n')
+    letters_cpp.write('byte %s[128][WIDTH];\n' % VARNAME)
+    letters_cpp.write('void init_letters() {\n')
+
+    for character in TEXT:
+        image = Image.new('1',(WIDTH, HEIGHT))
+        draw = ImageDraw.Draw(image)
+        draw.text((0, 0), character, font=font, fill=1)
+        pix = image.load()
+        for i,x in enumerate(xrange(WIDTH)):
+            letters_cpp.write("    %s['%s'][%d] = byte(B" % (VARNAME, escape(character), i))
+            for y in xrange(1,HEIGHT-1):
+                letters_cpp.write(str(pix[x,y]))
+            letters_cpp.write(');\n')
+        letters_cpp.write('\n')
+    letters_cpp.write('}\n')
