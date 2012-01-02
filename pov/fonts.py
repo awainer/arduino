@@ -33,7 +33,7 @@ extern byte %s[128][WIDTH];
 
 void init_letters();
 
-#endif''' % (WIDTH, HEIGHT - 2, VARNAME))
+#endif\n''' % (WIDTH, HEIGHT - 2, VARNAME))
 
 with open('letters.cpp', 'w') as letters_cpp:
     letters_cpp.write('#include "letters.h"\n')
