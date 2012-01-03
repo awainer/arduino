@@ -3,18 +3,20 @@
 int i,j;
 byte a[4];
 int mask;
-int DELAY=300;
-
-#define pin_base 6
+int DELAY=10;
+char buffer_txt[25];
+const int pin_base=6;
 
 void setup() {
   init_letters();
     Serial.begin(9600);  
     Serial.println("Empiezo setup");
-
-   for(i=6;i<14;i++){
+  //configure pins
+   for(i=pin_base;i<(pin_base + HEIGHT) ;i++)
        pinMode(i, OUTPUT);     
-  }
+  //test!
+  pov_test(pin_base,HEIGHT);
+  
     Serial.println("Termino setup");
 }
 
@@ -40,7 +42,7 @@ void pov_letra(char l)
      }
    delay(DELAY);
    }
-   pov_apagar(pin_base);
+   pov_apagar(pin_base,HEIGHT);
 }
 
 void pov_texto(char * t){
@@ -54,15 +56,25 @@ void pov_texto(char * t){
   } 
 }
 
-void pov_apagar(int base)
+void pov_apagar(int base, int heigh)
 { int i;
   Serial.println("apago");
-   for(i=0;i<9;i++)
+   for(i=0;i<heigh;i++)
      digitalWrite(base + i, LOW);
   Serial.println("ya apague");
   delay(DELAY);
 }
-
+void pov_test(int base, int heigh){
+ int i;
+  for ( i=pin_base; i < (pin_base+heigh) ; i++)
+      {
+      digitalWrite(i,HIGH);
+      delay(100);
+      digitalWrite(i,LOW);
+     }
+ 
+  
+}
 void loop() {
 
  /*   pov_letra('x');
