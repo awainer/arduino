@@ -6,6 +6,7 @@ int mask;
 int DELAY=10;
 char buffer_txt[25];
 const int pin_base=6;
+char buffer_in[25],buffer_p[25];
 
 void setup() {
   init_letters();
@@ -58,10 +59,10 @@ void pov_texto(char * t){
 
 void pov_apagar(int base, int heigh)
 { int i;
-  Serial.println("apago");
+ // Serial.println("apago");
    for(i=0;i<heigh;i++)
      digitalWrite(base + i, LOW);
-  Serial.println("ya apague");
+ // Serial.println("ya apague");
   delay(DELAY);
 }
 void pov_test(int base, int heigh){
@@ -76,25 +77,31 @@ void pov_test(int base, int heigh){
   
 }
 void loop() {
+  char c;
 
- /*   pov_letra('x');
-    pov_letra('l');
-    pov_letra(' ');
-    pov_letra('h');*/
-  pov_texto("hola mundo!");
-  /*  int i;
-  for ( i=6;i<14;i++)
+#ifdef DEBUG
+//  Serial.println(buffer_p);
+//  Serial.println(buffer_in);
+#endif
+
+  pov_texto(buffer_p);
+
+  while(Serial.available() > 0)
+  {
+    if(Serial.peek()==13  || Serial.peek()==10)
       {
-      //Serial.write(i);
-      digitalWrite(i,HIGH);
-      
-      delay(100);
-      digitalWrite(i,LOW);
 
-      }*/
-//Serial.println("loop");
- //pov_texto("o");
-  //pov_letra('u');
- //pov_apagar(pin_base);
-// delay(200);
+        strcpy(buffer_p,buffer_in);
+        buffer_in[0]=0;
+        Serial.read();
+      }
+     else
+     {
+      c=Serial.read();
+      Serial.print("recibo ");
+      Serial.println(c);
+      strcat(buffer_in,&c);
+     }
+  }
+
 }
