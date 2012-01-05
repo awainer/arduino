@@ -1,10 +1,10 @@
 #include "letters.h"
-
+#define DEBUG 1
 int i,j;
 byte a[4];
 int mask;
 int DELAY=10;
-char buffer_txt[25];
+
 const int pin_base=6;
 char buffer_in[25],buffer_p[25];
 
@@ -17,7 +17,14 @@ void setup() {
        pinMode(i, OUTPUT);     
   //test!
   pov_test(pin_base,HEIGHT);
-  
+  strcpy(buffer_p,"hola mundo");
+  strcpy(buffer_in,"");
+  #ifdef DEBUG
+  Serial.print("buffer_p");
+  Serial.println(buffer_p);
+  Serial.print("buffer_in");
+  Serial.println(buffer_in);
+  #endif
     Serial.println("Termino setup");
 }
 
@@ -78,17 +85,21 @@ void pov_test(int base, int heigh){
 }
 void loop() {
   char c;
-
+  byte b;
+  int l;
 #ifdef DEBUG
-//  Serial.println(buffer_p);
-//  Serial.println(buffer_in);
+  Serial.print("buffer_p: ");
+  Serial.println(buffer_p);
+  Serial.print("buffer_in: ");
+  Serial.println(buffer_in);
 #endif
 
   pov_texto(buffer_p);
 
   while(Serial.available() > 0)
   {
-    if(Serial.peek()==13  || Serial.peek()==10)
+//    if(Serial.peek()==13  || Serial.peek()==10)
+    if(Serial.peek()==46)
       {
 
         strcpy(buffer_p,buffer_in);
@@ -97,10 +108,15 @@ void loop() {
       }
      else
      {
-      c=Serial.read();
+      b=Serial.read();
       Serial.print("recibo ");
+      c=b;
       Serial.println(c);
-      strcat(buffer_in,&c);
+      l=strlen(buffer_in);
+      buffer_in[l]=c;
+      buffer_in[l+1]=0;
+//      buffer_in.append(1,c);
+
      }
   }
 
