@@ -37,11 +37,11 @@ void init_letters() {
     letters['f'][3] = byte(B10100000);
     letters['f'][4] = byte(B10100000);
 
-    letters['g'][0] = byte(B00011100);
-    letters['g'][1] = byte(B00100010);
-    letters['g'][2] = byte(B00100010);
-    letters['g'][3] = byte(B00100010);
-    letters['g'][4] = byte(B00111111);
+    letters['g'][0] = byte(B01110010);
+    letters['g'][1] = byte(B10001010);
+    letters['g'][2] = byte(B10001010);
+    letters['g'][3] = byte(B10001010);
+    letters['g'][4] = byte(B11111100);
 
     letters['h'][0] = byte(B11111110);
     letters['h'][1] = byte(B00100000);
@@ -91,17 +91,17 @@ void init_letters() {
     letters['o'][3] = byte(B00100010);
     letters['o'][4] = byte(B00011100);
 
-    letters['p'][0] = byte(B00111111);
-    letters['p'][1] = byte(B00100010);
-    letters['p'][2] = byte(B00100010);
-    letters['p'][3] = byte(B00100010);
-    letters['p'][4] = byte(B00011100);
+    letters['p'][0] = byte(B11111110);
+    letters['p'][1] = byte(B10001000);
+    letters['p'][2] = byte(B10001000);
+    letters['p'][3] = byte(B10001000);
+    letters['p'][4] = byte(B01110000);
 
-    letters['q'][0] = byte(B00011100);
-    letters['q'][1] = byte(B00100010);
-    letters['q'][2] = byte(B00100010);
-    letters['q'][3] = byte(B00100010);
-    letters['q'][4] = byte(B00111111);
+    letters['q'][0] = byte(B01110000);
+    letters['q'][1] = byte(B10001000);
+    letters['q'][2] = byte(B10001000);
+    letters['q'][3] = byte(B10001000);
+    letters['q'][4] = byte(B11111110);
 
     letters['r'][0] = byte(B00000000);
     letters['r'][1] = byte(B00111110);
@@ -145,11 +145,11 @@ void init_letters() {
     letters['x'][3] = byte(B00010100);
     letters['x'][4] = byte(B00100010);
 
-    letters['y'][0] = byte(B00100000);
-    letters['y'][1] = byte(B00011100);
-    letters['y'][2] = byte(B00000011);
-    letters['y'][3] = byte(B00011100);
-    letters['y'][4] = byte(B00100000);
+    letters['y'][0] = byte(B10000010);
+    letters['y'][1] = byte(B01110010);
+    letters['y'][2] = byte(B00001100);
+    letters['y'][3] = byte(B01110000);
+    letters['y'][4] = byte(B10000000);
 
     letters['z'][0] = byte(B00100010);
     letters['z'][1] = byte(B00100110);
@@ -391,11 +391,11 @@ void init_letters() {
     letters['#'][3] = byte(B00111110);
     letters['#'][4] = byte(B11101000);
 
-    letters['$'][0] = byte(B01100100);
-    letters['$'][1] = byte(B10010010);
+    letters['$'][0] = byte(B00110010);
+    letters['$'][1] = byte(B01001001);
     letters['$'][2] = byte(B11111111);
-    letters['$'][3] = byte(B10010010);
-    letters['$'][4] = byte(B01001100);
+    letters['$'][3] = byte(B01001001);
+    letters['$'][4] = byte(B00100110);
 
     letters['%'][0] = byte(B01000010);
     letters['%'][1] = byte(B10100100);
@@ -440,8 +440,8 @@ void init_letters() {
     letters['+'][4] = byte(B00010000);
 
     letters[','][0] = byte(B00000000);
-    letters[','][1] = byte(B00000000);
-    letters[','][2] = byte(B00000011);
+    letters[','][1] = byte(B00000010);
+    letters[','][2] = byte(B00001100);
     letters[','][3] = byte(B00000000);
     letters[','][4] = byte(B00000000);
 
@@ -470,8 +470,8 @@ void init_letters() {
     letters[':'][4] = byte(B00000000);
 
     letters[';'][0] = byte(B00000000);
-    letters[';'][1] = byte(B00000000);
-    letters[';'][2] = byte(B00100011);
+    letters[';'][1] = byte(B00000010);
+    letters[';'][2] = byte(B10001100);
     letters[';'][3] = byte(B00000000);
     letters[';'][4] = byte(B00000000);
 
@@ -529,11 +529,11 @@ void init_letters() {
     letters['^'][3] = byte(B01100000);
     letters['^'][4] = byte(B00010000);
 
-    letters['_'][0] = byte(B00000000);
-    letters['_'][1] = byte(B00000000);
-    letters['_'][2] = byte(B00000000);
-    letters['_'][3] = byte(B00000000);
-    letters['_'][4] = byte(B00000000);
+    letters['_'][0] = byte(B00000010);
+    letters['_'][1] = byte(B00000010);
+    letters['_'][2] = byte(B00000010);
+    letters['_'][3] = byte(B00000010);
+    letters['_'][4] = byte(B00000010);
 
     letters['`'][0] = byte(B00000000);
     letters['`'][1] = byte(B00000000);
