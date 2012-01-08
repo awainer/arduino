@@ -1,10 +1,10 @@
 #include "letters.h"
-//#define DEBUG
+#define DEBUG
 
 int DELAY = 10;
 const int pins[] = { 8,9,2,3,4,5,6,7 };
-String buffer_p = "Hello world!";
-String buffer_in;
+String buffer_p = "Hello world! ";
+String buffer_in = "";
 
 void setup() {
   init_letters();
@@ -78,23 +78,21 @@ void loop() {
   Serial.println(buffer_in);
 #endif
   pov_texto(buffer_p);
-  /*  while(Serial.available() > 0)
-   {
-   //    if(Serial.peek()==13  || Serial.peek()==10)
-   if(Serial.peek()==46)
-   {
-   buffer_p = buffer_in;
-   buffer_in = String();
-   Serial.read();
-   }
-   else
-   {
-   char c=Serial.read();
-   Serial.print("recibo ");
-   Serial.println(c);
-   buffer_in.concat(c);
-   }
-   }*/
+  while(Serial.available() > 0)
+  {
+    //    if(Serial.peek()==13  || Serial.peek()==10)
+    if(Serial.peek()==46)
+    {
+      buffer_p = buffer_in;
+      buffer_in = String();
+      Serial.read();
+    }
+    else
+    {
+      char c=Serial.read();
+      Serial.print("recibo ");
+      Serial.println(c);
+      buffer_in.concat(c);
+    }
+  }
 }
-
-
